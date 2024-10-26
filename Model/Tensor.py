@@ -28,15 +28,16 @@ class Tensor:
         'reg': 0.005
     }
 
-    def __init__(self):
+    def __init__(self, name: str):
         np.random.seed(SEED)
         tf.random.set_seed(SEED)
         os.environ['PYTHONHASHSEED'] = str(SEED)
         self.model = None
-        train_ = get_data(type='Brain',dtype='Train')
-        val_ = get_data(type='Brain',dtype='Val')
+        train_ = get_data(type='brain',dtype='train')
+        val_ = get_data(type='brain',dtype='val')
         self.train = tune(train_)
         self.val = tune(val_)
+        self.name = name
 
     # MARK: MODEL
 
@@ -63,7 +64,7 @@ class Tensor:
         if self.model == None:
             return
 
-        self.model.compile(optimizer='adam',loss=CategoricalCrossentropy(from_logits=True),metrics=['accuracy'])
+        self.model.compile(optimizer='adam',loss=CategoricalCrossentropy(from_logits=False),metrics=['accuracy'])
         history = self.model.fit(
             self.train,
             validation_data=self.val,
@@ -81,11 +82,14 @@ class Tensor:
         return self.model.evaluate(self.val)
 
     # MARK: Save Model
+
+    def save_model(self):
+        self.model.save(f"./models/{self.name}.keras")
     
 if __name__ == "__main__":
-    tensor = Tensor()
+    tensor = Tensor(name="brain")
     tensor.build_model()
-    tensor.train_model()   
+    tensor.train_model(epochs=5)   
     tensor.evaluate_model()     
-
+    tensor.save_model()
     
