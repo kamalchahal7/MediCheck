@@ -33,11 +33,12 @@ class Tensor:
         tf.random.set_seed(SEED)
         os.environ['PYTHONHASHSEED'] = str(SEED)
         self.model = None
-        train_ = get_data(type='brain',dtype='train')
-        val_ = get_data(type='brain',dtype='val')
+        train_ = get_data(type=name ,dtype='train')
+        val_ = get_data(type=name ,dtype='val')
         self.train = tune(train_)
         self.val = tune(val_)
         self.name = name
+        self.labels = get_labels(name)
 
     # MARK: MODEL
 
@@ -74,6 +75,14 @@ class Tensor:
         )
 
         return history
+    
+    # Tune Hyper-parameters
+
+    def hyper_model(self):
+        return
+    
+    def tune_hyper(self):
+        return
 
     def evaluate_model(self):
         if self.model == None or not self.model.compiled:
@@ -84,7 +93,11 @@ class Tensor:
     # MARK: Save Model
 
     def save_model(self):
-        self.model.save(f"./models/{self.name}.keras")
+        self.model.save(f"./Model/models/{self.name}.keras")
+
+        f = open(f"./Model/labels/{self.name}.txt", "w")
+        f.write(self.labels)
+        f.close()
     
 if __name__ == "__main__":
     tensor = Tensor(name="brain")

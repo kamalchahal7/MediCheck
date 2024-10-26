@@ -3,7 +3,7 @@ from tensor_imports import *
 def get_data(type:str,dtype:str):
 
     return image_dataset_from_directory(
-        f"./data/{type}/{dtype}",
+        f"./Model/data/{type}/{dtype}",
         labels="inferred",
         label_mode="categorical",
         image_size=[256,256],
@@ -24,3 +24,10 @@ def tune(ds:tf.data.Dataset):
         .cache()
         .prefetch(buffer_size=tf.data.experimental.AUTOTUNE)
     )
+
+def get_labels(type:str):
+    labels = []
+    for dr in os.listdir(f"./Model/data/{type}/train"):
+        labels.append(dr)
+    joined = ",".join(labels)
+    return joined
