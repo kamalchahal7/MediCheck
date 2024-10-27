@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    {% if not description %}
+        <h1>MediCheck</h1>
+        <form action="/" method = "post">
+            <div class="mb-3">
+                <label for="img">Select image:</label>
+                <input type="file" id="img" name="img" accept="image/*">
+            </div>
+            <div class="mb-3">
+                <label class="button">
+                    <input type="radio" name="button-group" value="MRI" />
+                    MRI
+                </label>
+                <label class="button">
+                    <input type="radio" name="button-group" value="XRAY" />
+                    X-Ray
+                </label>
+                <label class="button">
+                    <input type="radio" name="button-group" value="ULTRA" />
+                    Ultrasound
+                </label>
+                <label class="button">
+                    <input type="radio" name="button-group" value="PET" />
+                    PET
+                </label>
+            </div>
+            <div class="mb-3">
+                <label class="button">
+                    <input type="radio" name="button-group2" value="CHEST" />
+                    Chest
+                </label>
+                <label class="button">
+                    <input type="radio" name="button-group2" value="BREAST" />
+                    Breast
+                </label>
+                <label class="button">
+                    <input type="radio" name="button-group2" value="BRAIN" />
+                    Brain
+                </label>
+                <label class="button">
+                    <input type="radio" name="button-group2" value="ARMLEFT" />
+                    Arm-Left
+                </label>
+                <label class="button">
+                    <input type="radio" name="button-group2" value="ARMRIGHT" />
+                    Arm-Right
+                </label>
+                <label class="button">
+                    <input type="radio" name="button-group2" value="LEGLEFT" />
+                    Leg-Left
+                </label>
+                <label class="button">
+                    <input type="radio" name="button-group2" value="LEGRIGHT" />
+                    Leg-Right
+                </label>
+            </div>
+            <button class="btn btn-secondary" type="submit">Submit</button>
+        </form>
+    {% else %}
+        <p>{{ description }}</p>
+    {% endif %}
+{% endblock %}
