@@ -22,7 +22,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Set the path for the images folder
-app.config['IMAGES_FOLDER'] = 'images'
+app.config['IMAGES_FOLDER'] = 'static/images'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # Limit upload size to 16 MB
 
 @app.after_request
