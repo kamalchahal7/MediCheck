@@ -19,21 +19,34 @@ class Client:
 
         with open(l_path,"r") as f:
             self.labels = f.readline().split(",")
+
+    def __preprocess_img(self, img_path : str):
+        img = Image.open(img_path)
+        img = img.resize((256,256))
+        img = img.convert('RGB')
+        img_array = np.array(img)
+        img_tensor = tf.convert_to_tensor(img_array, dtype=tf.float32)
+        img_tensor = tf.expand_dims(img_tensor, axis=0)
+        print(img_tensor.shape)
+        return img_tensor
         
-    def predict(self, img):
-        res = self.model.predict(img)
+    def predict(self, img_path : str):
+        feed = self.__preprocess_img(img_path)
+        res = self.model.predict(feed)[0]
         print(res)
+        mx = max(res)
+        idx = 0
+        for i in range(len(res)):
+            if res[i] == mx:
+                idx = i
+                break
+        return self.labels[idx]
+        
 
 if __name__ == "__main__":
     # Sample image
-    img_path = "./Model/data/brain/train/Glioma/images/gg (2).jpg"
-    img = Image.open(img_path)
-    img = img.resize((256,256))
-    img = img.convert('RGB')
-    img_array = np.array(img)
-    img_tensor = tf.convert_to_tensor(img_array, dtype=tf.float32)
-    img_tensor = tf.expand_dims(img_tensor, axis=0)
-    print(img_tensor.shape)
+    img_path = "./Model/data/brain/train/Glioma/images/gg (20).jpg"
     # Client testing
     client = Client("brain")
-    client.predict(img=img_tensor)
+    y_pred = client.predict(img_path)
+    print(y_pred)

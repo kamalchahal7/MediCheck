@@ -6,7 +6,7 @@ from flask import Flask, flash, redirect, render_template, request, session, url
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from functions import fetch
-
+from Model.Client import Client
 
 from datetime import datetime
 import pytz
@@ -35,23 +35,25 @@ def index():
         session.pop("requested", None)
         return render_template("index.html")
     else:
-        img = request.form.get("img")
+        img: str = request.form.get("img")
         if not img:
             mssg = "Medical diagnosis image not uploaded."
             return render_template("error.html", error=mssg)
 
-        scan_type = request.form.get("button-group")
+        scan_type: str = request.form.get("button-group")
         if not scan_type:
             mssg = "Scantype not selected."
             return render_template("error.html", error=mssg)
         else:
             print(f"Selected option: {scan_type}")
 
-        location = request.form.get("button-group2")
+        location: str = request.form.get("button-group2")
         if not location:
             mssg = "Location not specified."
             return render_template("error.html", error=mssg)
         else:
             print(f"Selected option: {location}")
         
+        client = Client(name = location.lower())
+        prediction: str = client.predict(img) # THIS IS THE STRING TO BE RETURNED
         return render_template("index.html")
