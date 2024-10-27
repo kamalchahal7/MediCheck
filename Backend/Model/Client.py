@@ -2,9 +2,7 @@ try:
     from tensor_imports import *
 except:
     from Model.tensor_imports import *
-
 from PIL import Image
-from tensor_imports import *
 
 class Client:
 
