@@ -1,9 +1,9 @@
 try:
     from tensor_imports import *
+    from helpers import *
 except:
     from Model.tensor_imports import *
-from tensor_imports import *
-from helpers import *
+    from Model.helpers import *
 
 SEED = 12345
 
