@@ -7,7 +7,7 @@
 {% block main %}
     {% if not description %}
         <h1>MediCheck</h1>
-        <form action="/" method = "post">
+        <form action="/" method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="img">Select image:</label>
                 <input type="file" id="img" name="img" accept="image/*">
@@ -63,6 +63,15 @@
             <button class="btn btn-secondary" type="submit">Submit</button>
         </form>
     {% else %}
-        <p>{{ description }}</p>
+        {% if image_filename %}
+            <h2>Uploaded Image:</h2>
+            <img src="{{ url_for('static', filename='images/' + image_filename) }}" alt="Uploaded Image" style="border-radius: 20px; padding-bottom:2rem;">
+        {% endif %}
+        
+        {% if description %}
+            <h2>Description:</h2>
+            <p>{{ description }}</p>
+        {% endif %}
+        
     {% endif %}
 {% endblock %}
