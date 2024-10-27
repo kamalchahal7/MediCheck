@@ -6,18 +6,61 @@
 
 {% block main %}
     {% if not description %}
-        <h1>Home</h1>
-        <button>MRI</button>
-        <button>X-Ray</button>
-        <button>Ultrasound</button>
+        <h1>MediCheck</h1>
         <form action="/" method = "post">
             <div class="mb-3">
-                <input autocomplete="off" autofocus class ="form-control mx-auto w-auto" name = "tumour" placeholder="tumour"  type="text">
+                <label for="img">Select image:</label>
+                <input type="file" id="img" name="img" accept="image/*">
             </div>
             <div class="mb-3">
-                <input autocomplete="off" autofocus class ="form-control mx-auto w-auto" name = "location" placeholder="location"  type="text">
+                <label class="button">
+                    <input type="radio" name="button-group" value="MRI" />
+                    MRI
+                </label>
+                <label class="button">
+                    <input type="radio" name="button-group" value="XRAY" />
+                    X-Ray
+                </label>
+                <label class="button">
+                    <input type="radio" name="button-group" value="ULTRA" />
+                    Ultrasound
+                </label>
+                <label class="button">
+                    <input type="radio" name="button-group" value="PET" />
+                    PET
+                </label>
             </div>
-            <button class="btn btn-secondary" type="submit">Log In</button>
+            <div class="mb-3">
+                <label class="button">
+                    <input type="radio" name="button-group2" value="CHEST" />
+                    Chest
+                </label>
+                <label class="button">
+                    <input type="radio" name="button-group2" value="BREAST" />
+                    Breast
+                </label>
+                <label class="button">
+                    <input type="radio" name="button-group2" value="BRAIN" />
+                    Brain
+                </label>
+                <label class="button">
+                    <input type="radio" name="button-group2" value="ARMLEFT" />
+                    Arm-Left
+                </label>
+                <label class="button">
+                    <input type="radio" name="button-group2" value="ARMRIGHT" />
+                    Arm-Right
+                </label>
+                <label class="button">
+                    <input type="radio" name="button-group2" value="LEGLEFT" />
+                    Leg-Left
+                </label>
+                <label class="button">
+                    <input type="radio" name="button-group2" value="LEGRIGHT" />
+                    Leg-Right
+                </label>
+            </div>
+            <button class="btn btn-secondary" type="submit">Submit</button>
         </form>
     {% else %}
         <p>{{ description }}</p>

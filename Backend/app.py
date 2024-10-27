@@ -8,7 +8,6 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from functions import fetch
 
 
-
 from datetime import datetime
 import pytz
 utc_time = datetime.now(pytz.timezone('UTC'))
@@ -36,22 +35,23 @@ def index():
         session.pop("requested", None)
         return render_template("index.html")
     else:
-        btn1 = request.form.get("MRI")
-        btn2 = request.form.get("XRAY")
-        btn3 = request.form.get("ULTRA")
-
-        tumour = request.form.get("tumour")
-        if not tumour:
-            mssg = "Tumour not provided."
+        img = request.form.get("img")
+        if not img:
+            mssg = "Medical diagnosis image not uploaded."
             return render_template("error.html", error=mssg)
 
-        location = request.form.get("location")
+        scan_type = request.form.get("button-group")
+        if not scan_type:
+            mssg = "Scantype not selected."
+            return render_template("error.html", error=mssg)
+        else:
+            print(f"Selected option: {scan_type}")
+
+        location = request.form.get("button-group2")
         if not location:
             mssg = "Location not specified."
             return render_template("error.html", error=mssg)
+        else:
+            print(f"Selected option: {location}")
         
-        response = fetch(tumour, location)
-        print(response)
-        
-        # Optionally retry the request
         return render_template("index.html")
