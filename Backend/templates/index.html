@@ -5,5 +5,21 @@
 {% endblock %}
 
 {% block main %}
-    <h1>Home</h1>
+    {% if not description %}
+        <h1>Home</h1>
+        <button>MRI</button>
+        <button>X-Ray</button>
+        <button>Ultrasound</button>
+        <form action="/" method = "post">
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class ="form-control mx-auto w-auto" name = "tumour" placeholder="tumour"  type="text">
+            </div>
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class ="form-control mx-auto w-auto" name = "location" placeholder="location"  type="text">
+            </div>
+            <button class="btn btn-secondary" type="submit">Log In</button>
+        </form>
+    {% else %}
+        <p>{{ description }}</p>
+    {% endif %}
 {% endblock %}

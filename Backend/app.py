@@ -7,6 +7,8 @@ from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from functions import fetch
 
+
+
 from datetime import datetime
 import pytz
 utc_time = datetime.now(pytz.timezone('UTC'))
@@ -31,12 +33,25 @@ def after_request(response):
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method=="GET":
+        session.pop("requested", None)
         return render_template("index.html")
     else:
         btn1 = request.form.get("MRI")
         btn2 = request.form.get("XRAY")
         btn3 = request.form.get("ULTRA")
 
+        tumour = request.form.get("tumour")
+        if not tumour:
+            mssg = "Tumour not provided."
+            return render_template("error.html", error=mssg)
 
-
-        return render_template("")
+        location = request.form.get("location")
+        if not location:
+            mssg = "Location not specified."
+            return render_template("error.html", error=mssg)
+        
+        response = fetch(tumour, location)
+        print(response)
+        
+        # Optionally retry the request
+        return render_template("index.html")
