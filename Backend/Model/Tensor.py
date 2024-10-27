@@ -88,7 +88,7 @@ class Tensor:
         if self.model == None or not self.model.compiled:
             return []
         
-        return self.model.evaluate(self.val)
+        return self.model.evaluate(self.val, verbose=0)
 
     # MARK: Save Model
 
@@ -103,6 +103,7 @@ if __name__ == "__main__":
     tensor = Tensor(name="brain")
     tensor.build_model()
     tensor.train_model(epochs=20)   
-    tensor.evaluate_model()     
+    res = tensor.evaluate_model()     
+    print(f"Loss: {res[0]}, Accuracy: {res[1]}")
     tensor.save_model()
     
