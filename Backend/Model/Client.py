@@ -18,8 +18,8 @@ class Client:
         with open(l_path,"r") as f:
             self.labels = f.readline().split(",")
 
-    def __preprocess_img(self, img_path : str):
-        img = Image.open(img_path)
+    def __preprocess_img(self, img_input):
+        img = Image.open(img_input)
         img = img.resize((256,256))
         img = img.convert('RGB')
         img_array = np.array(img)
@@ -28,8 +28,8 @@ class Client:
         print(img_tensor.shape)
         return img_tensor
         
-    def predict(self, img_path : str):
-        feed = self.__preprocess_img(img_path)
+    def predict(self, img_input):
+        feed = self.__preprocess_img(img_input)
         res = self.model.predict(feed)[0]
         print(res)
         mx = max(res)

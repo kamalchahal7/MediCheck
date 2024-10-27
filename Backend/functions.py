@@ -4,11 +4,6 @@ from flask_cors import CORS
 from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session, url_for
 from flask_session import Session
-from openai import OpenAI
-
-client = OpenAI (
-    api_key = os.getenv('chat_api_key')
-)
 
 from datetime import datetime
 import pytz
@@ -16,7 +11,7 @@ import pytz
 
 
 def fetch(label):
-    if label == "No Tumour":
+    if label == "No Tumor":
         description = "The MRI scan reveals no signs of tumors or abnormal growths in the brain. The images demonstrate a healthy and normal structure of the brain, with no indications of masses, lesions, or other irregularities that could suggest the presence of a tumor. The surrounding brain tissue appears intact, and there are no abnormalities in the ventricles, which are the fluid-filled cavities of the brain. Additionally, there is no evidence of edema or swelling that may indicate any underlying pathology. These results are reassuring and suggest that the brain is functioning properly without any tumors or significant issues that would require further intervention."
     elif label == "Glioma":
         description = "Gliomas are tumors that originate in glial cells, which support neurons, and can include types such as astrocytomas, oligodendrogliomas, and ependymomas. Common symptoms include headaches, seizures, cognitive changes, and neurological deficits. The causes of gliomas can be linked to genetic factors like inherited syndromes (e.g., neurofibromatosis), environmental exposures to chemicals and radiation, and demographic factors, with a higher prevalence in adults aged 45-70, particularly in males. Gliomas grow by invading surrounding tissues, making complete surgical removal challenging, and are graded from I (slow-growing, benign) to IV (glioblastoma, aggressive), with higher grades indicating more rapid growth. Treatment approaches typically involve surgery to remove as much of the tumor as possible, radiation therapy to kill remaining cells, chemotherapy with drugs like temozolomide, targeted therapy focusing on specific genetic mutations, and participation in clinical trials for experimental treatments. Prognosis varies by tumor type, grade, and patient health, with lower-grade gliomas generally offering better outcomes than high-grade glioblastomas, which are more aggressive."

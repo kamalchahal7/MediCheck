@@ -102,7 +102,7 @@ class Tensor:
 if __name__ == "__main__":
     tensor = Tensor(name="brain")
     tensor.build_model()
-    tensor.train_model(epochs=20)   
+    tensor.train_model(epochs=10)   
     res = tensor.evaluate_model()     
     print(f"Loss: {res[0]}, Accuracy: {res[1]}")
     tensor.save_model()

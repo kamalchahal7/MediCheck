@@ -69,9 +69,10 @@ def index():
             mssg = "Location not specified."
             return render_template("error.html", error=mssg)
         
-        prediction = "No Tumour"
-        
-        description = fetch(prediction)  # Fetch description based on prediction
+        client = Client(name=location.lower())
+        prediction = client.predict(img)
+        print(prediction)
+        description = fetch(prediction) # Fetch description based on prediction
         return render_template("index.html", description=description, image_filename=filename)
 
 if __name__ == '__main__':
