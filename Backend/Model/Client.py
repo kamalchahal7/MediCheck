@@ -2,6 +2,7 @@ try:
     from tensor_imports import *
 except:
     from Model.tensor_imports import *
+    
 from PIL import Image
 
 class Client:
@@ -43,8 +44,9 @@ class Client:
 
 if __name__ == "__main__":
     # Sample image
-    img_path = "./Model/data/brain/train/Glioma/images/gg (20).jpg"
+    img_path = "./Model/data/brain/train/Pituitary/images/p (55).jpg"
     # Client testing
     client = Client("brain")
     y_pred = client.predict(img_path)
     print(y_pred)
+

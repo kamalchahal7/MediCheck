@@ -70,6 +70,7 @@ def index():
             return render_template("error.html", error=mssg)
         
         client = Client(name=location.lower())
+        print(img)
         prediction = client.predict(img)
         print(prediction)
         description = fetch(prediction) # Fetch description based on prediction
