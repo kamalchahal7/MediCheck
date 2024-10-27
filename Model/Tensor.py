@@ -102,7 +102,7 @@ class Tensor:
 if __name__ == "__main__":
     tensor = Tensor(name="brain")
     tensor.build_model()
-    tensor.train_model(epochs=5)   
+    tensor.train_model(epochs=20)   
     tensor.evaluate_model()     
     tensor.save_model()
     

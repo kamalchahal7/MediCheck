@@ -1,5 +1,5 @@
 .env
-data/
-models/
-labels/
+Model/data/
+Model/models/
+Model/labels/
 Model/__pycache__
