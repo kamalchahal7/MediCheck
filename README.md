@@ -14,3 +14,4 @@ Then add them into the following directories:
 
 - brain.keras : ./Backend/Model/models
 - brain.txt : ./Backend/Model/labels
+
