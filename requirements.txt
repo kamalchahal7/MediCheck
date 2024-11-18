@@ -1,0 +1,8 @@
+tensorflow
+numpy
+pillow
+flask
+cs50
+werkzeug
+pytz
+setuptools

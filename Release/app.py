@@ -5,10 +5,12 @@ from flask import Flask, flash, redirect, render_template, request, session, url
 from flask_session import Session
 from werkzeug.utils import secure_filename
 from functions import fetch
-from Model.Client import Client
 from PIL import Image
 from datetime import datetime
 import pytz
+
+# Client Model
+from Client import Client
 
 # Set timezone
 utc_time = datetime.now(pytz.timezone('UTC'))
@@ -69,10 +71,13 @@ def index():
             mssg = "Location not specified."
             return render_template("error.html", error=mssg)
         
-        client = Client(name=location.lower())
-        print(img)
+        # Get appropriate model
+        model_path = os.path.join(f"./models/{location.lower()}.keras")
+        label_path = os.path.join(f"./labels/{location.lower()}.txt")
+        # Get client model prediction
+        client = Client(model_path, label_path)
         prediction = client.predict(img)
-        print(prediction)
+        #Debug: print(img, prediction)
         description = fetch(prediction) # Fetch description based on prediction
         return render_template("index.html", description=description, image_filename=filename)
 

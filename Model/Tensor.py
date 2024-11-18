@@ -1,9 +1,5 @@
-try:
-    from tensor_imports import *
-    from helpers import *
-except:
-    from Model.tensor_imports import *
-    from Model.helpers import *
+from tensor_imports import *
+from Model.helpers import *
 
 SEED = 12345
 
@@ -99,6 +95,7 @@ class Tensor:
         f.write(self.labels)
         f.close()
     
+'''
 if __name__ == "__main__":
     tensor = Tensor(name="brain")
     tensor.build_model()
@@ -106,4 +103,4 @@ if __name__ == "__main__":
     res = tensor.evaluate_model()     
     print(f"Loss: {res[0]}, Accuracy: {res[1]}")
     tensor.save_model()
-    
+''' 

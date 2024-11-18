@@ -1,0 +1,6 @@
+README.md
+setup.py
+medichek.egg-info/PKG-INFO
+medichek.egg-info/SOURCES.txt
+medichek.egg-info/dependency_links.txt
+medichek.egg-info/top_level.txt

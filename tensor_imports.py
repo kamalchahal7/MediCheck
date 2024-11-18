@@ -1,7 +1,7 @@
 import numpy as np
-import pandas as pd
+#import pandas as pd
 import tensorflow as tf
-import PIL
+from PIL import Image
 
 from keras.api.layers import Dense,Activation,InputLayer,Flatten,Conv2D,MaxPool2D,BatchNormalization
 from keras.api.optimizers import Adam
