@@ -1,10 +1,16 @@
+# Virtual environment
 .env
+# Model
 data/
 models/
 labels/
+# All cache
 __pycache__/
+# Release
 flask_session/
 images/
 uploads/
-
+# Other
+medichek.egg-info/
+# Don't ignore README.md
 !README.md
