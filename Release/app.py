@@ -4,13 +4,14 @@ from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session, url_for
 from flask_session import Session
 from werkzeug.utils import secure_filename
-from functions import fetch
 from PIL import Image
 from datetime import datetime
 import pytz
 
 # Client Model
-from Client import Client
+from .Client import Client
+# Helpers 
+from .functions import fetch
 
 # Set timezone
 utc_time = datetime.now(pytz.timezone('UTC'))
@@ -82,4 +83,4 @@ def index():
         return render_template("index.html", description=description, image_filename=filename)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,host="0.0.0.0",port=5000)

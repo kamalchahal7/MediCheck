@@ -2,6 +2,8 @@ tensorflow
 numpy
 pillow
 flask
+flask_cors
+flask_session
 cs50
 werkzeug
 pytz
